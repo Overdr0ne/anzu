@@ -522,7 +522,7 @@
                                  (anzu--check-minibuffer-input
                                   curbuf beg end use-regexp overlay-limit))))))
           (prog1 (read-from-minibuffer (format "%s: " prompt)
-                                       nil nil nil 'anzu--history nil t)
+                                       (thing-at-point 'symbol) nil nil 'anzu--history nil t)
             (setq is-input t)))
       (when timer
         (cancel-timer timer)
@@ -655,7 +655,7 @@
                                   (minibuffer-contents)
                                   curbuf beg end use-regexp overlay-limit from))))))
           (prog1 (read-from-minibuffer to-prompt
-                                       nil nil nil
+                                       (query-replace-descr from) nil nil
                                        query-replace-from-history-variable nil t)
             (setq is-input t)))
       (when timer
